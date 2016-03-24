@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
 <title>Error Page</title>
 </head>
 <body>
 <br />
-<center><p class="error">Oops! Something went wrong! Please come again later</p></center>
+<br />
+<br />
+<center><p class="error">Something went wrong with Database. Please try again</p></center>
 </body>
 </html>

@@ -8,6 +8,7 @@
 <link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<br /><br /><br />
 <center class="error">You Do Not Have Permission to Access This Page!</center>
 </body>
 </html>
