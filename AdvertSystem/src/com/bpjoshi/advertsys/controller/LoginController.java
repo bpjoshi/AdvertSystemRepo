@@ -41,6 +41,11 @@ public class LoginController {
 		return "admin";
 	}
 	
+	@RequestMapping("/accessDenied")
+	public String showAccessDenied(){
+		return "accessDenied";
+	}
+	
 	@RequestMapping("/login")
 	public String showLogin(){
 		
