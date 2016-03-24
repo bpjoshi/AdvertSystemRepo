@@ -34,6 +34,9 @@
 		</table>
 	</sf:form>
 	<br /> <br />
-	<center><a href="${pageContext.request.contextPath}/logout">Logout</a></center>
+	<center>
+		<a href="${pageContext.request.contextPath}/logout">Logout</a><br />
+		<a href="${pageContext.request.contextPath}/admin">Admin Page</a>
+	</center>
 </body>
 </html>
