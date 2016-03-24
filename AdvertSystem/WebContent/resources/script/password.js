@@ -4,15 +4,6 @@ function onLoad(){
  $("#userdetails").submit(confirmPass);
 }
 
-function confirmPass(){
-	if(password!=confirmPass){
-		alert('Password do not match!')
-		return false;
-	}
-	
-	return true;
-}
-
 function passwordMatch(){
 
 var password=$("#password").val();

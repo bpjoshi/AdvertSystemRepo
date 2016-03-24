@@ -6,7 +6,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -24,6 +23,9 @@ public class UserDao {
 	
 	private NamedParameterJdbcTemplate jdbc;
 	
+	@Autowired
+	private org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
+	
 	
 	@Autowired
 	public void setDataSource(DataSource jdbc) {
@@ -32,9 +34,17 @@ public class UserDao {
 
 	@Transactional
 	public boolean createAccount(User user) {
-		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
-		jdbc.update("insert into users (username, email, password, enabled) values (:username, :email, :password, enabled)", params);
-		return jdbc.update("insert into authorities (username, authority) values (:username, :authority)", params) == 1;
+		
+		MapSqlParameterSource prams= new MapSqlParameterSource();
+		prams.addValue("username", user.getUsername());
+		prams.addValue("email", user.getEmail());
+		prams.addValue("password", passwordEncoder.encode(user.getPassword()));
+		prams.addValue("enabled", user.isEnabled());
+		prams.addValue("authority", user.getAuthority());
+		
+		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
+		jdbc.update("insert into users (username, email, password, enabled) values (:username, :email, :password, enabled)", prams);
+		return jdbc.update("insert into authorities (username, authority) values (:username, :authority)", prams) == 1;
 	}
 
 	public boolean exists(String username) {

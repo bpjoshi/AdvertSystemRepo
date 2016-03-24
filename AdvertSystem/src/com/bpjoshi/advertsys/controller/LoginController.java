@@ -70,7 +70,7 @@ public class LoginController {
 			return "createAccount";
 		}
 		user.setEnabled(true);
-		user.setAuthority("user");
+		user.setAuthority("ROLE_USER");
 		
 		if(userService.exists(user.getUsername())){
 			
