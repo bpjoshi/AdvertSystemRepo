@@ -33,5 +33,7 @@
 			</tr>
 		</table>
 	</sf:form>
+	<br /> <br />
+	<center><a href="${pageContext.request.contextPath}/logout">Logout</a></center>
 </body>
 </html>

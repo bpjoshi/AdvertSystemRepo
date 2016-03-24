@@ -16,6 +16,7 @@
 	<security:http use-expressions="true">
 	<security:intercept-url pattern="/" access="permitAll" />
 	<security:intercept-url pattern="/currentAdverts"   access="permitAll" />
+	<security:intercept-url pattern="/logout"   access="permitAll" />
 	<security:intercept-url pattern="/error" access="permitAll" />
 	<security:intercept-url pattern="/static/**" access="permitAll" />
 	<security:intercept-url pattern="/login" access="permitAll" />
@@ -29,5 +30,6 @@
 	<security:form-login login-page="/login"
 		authentication-failure-url="/login?error=true" />
 	<security:csrf disabled="true" />
+	<security:logout logout-url="/logout" invalidate-session="true" />
 	</security:http>
 </beans>

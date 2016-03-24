@@ -32,10 +32,21 @@ public class LoginController {
 		return "home";
 	}
 	
+	@RequestMapping("/admin")
+	public String showAdmin(){
+		return "admin";
+	}
+	
 	@RequestMapping("/login")
 	public String showLogin(){
 		
 		return "login";
+	}
+	
+	@RequestMapping("/logout")
+	public String showLogout(){
+		
+		return "logout";
 	}
 	
 	@RequestMapping("/createAccount")
