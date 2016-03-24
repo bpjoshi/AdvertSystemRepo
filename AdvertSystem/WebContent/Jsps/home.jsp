@@ -29,7 +29,7 @@
 </sec:authorize>
 </tr>
 <tr>
-<sec:authorize access="hasAuthority('admin')">
+<sec:authorize access="hasAuthority('ROLE_ADMIN')">
 <td><a href="${pageContext.request.contextPath}/admin">Admin Page</a></td>
 </sec:authorize>
 </tr>

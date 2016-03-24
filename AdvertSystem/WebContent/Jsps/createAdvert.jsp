@@ -37,7 +37,7 @@
 	<br /> <br />
 	<center>
 		<a href="${pageContext.request.contextPath}/logout">Logout</a><br />
-		<sec:authorize access="hasAuthority('admin')">
+		<sec:authorize access="hasAuthority('ROLE_ADMIN')">
 		<a href="${pageContext.request.contextPath}/admin">Admin Page</a>
 		</sec:authorize>
 		
