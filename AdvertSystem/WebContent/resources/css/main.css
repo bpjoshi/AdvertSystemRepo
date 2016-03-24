@@ -1,0 +1,47 @@
+@CHARSET "ISO-8859-1";
+.formTable {
+	width:380px;
+	padding: 10px;
+	border: 1px solid grey;
+}
+
+input[type=text]{
+	width:240px;
+}
+
+input[type=password]{
+	width:240px;
+}
+
+textarea {
+	width:240px;
+	height:100px;
+}
+
+.label{
+	text-align:left;
+	vertical-align:top;
+
+}
+
+.control{
+	margin-left: 10px;
+}
+
+.error{
+font-size: small;
+color:red;
+margin-left:10px;
+}
+
+.valid{
+font-size: small;
+color:green;
+margin-left:10px;
+}
+
+
+table.currentAdverts{
+	padding:10px;
+	
+}
