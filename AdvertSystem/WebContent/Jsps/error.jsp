@@ -8,6 +8,6 @@
 </head>
 <body>
 <br />
-<p class="error">Oops! Something went wrong! Please come again later</p>
+<center><p class="error">Oops! Something went wrong! Please come again later</p></center>
 </body>
 </html>
