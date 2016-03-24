@@ -1,5 +1,7 @@
 package com.bpjoshi.advertsys.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/admin")
-	public String showAdmin(){
+	public String showAdmin(Model model){
+		List<User> userList= userService.getAllUsers();
+		model.addAttribute("userList", userList);
 		return "admin";
 	}
 	

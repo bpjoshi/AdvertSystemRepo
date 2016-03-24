@@ -23,6 +23,16 @@
 <td><a href="${pageContext.request.contextPath}/login">Login</a></td>
 </sec:authorize>
 </tr>
+<tr>
+<sec:authorize access="isAuthenticated()">
+<td><a href="${pageContext.request.contextPath}/logout">Logout</a></td>
+</sec:authorize>
+</tr>
+<tr>
+<sec:authorize access="hasAuthority('admin')">
+<td><a href="${pageContext.request.contextPath}/admin">Admin Page</a></td>
+</sec:authorize>
+</tr>
 </table>
 </body>
 </html>
