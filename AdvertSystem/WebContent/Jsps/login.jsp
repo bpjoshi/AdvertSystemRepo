@@ -21,6 +21,10 @@
 				<td><input type='password' name='password' /></td>
 			</tr>
 			<tr>
+				<td>Remember Me:</td>
+				<td><input type="checkbox" name='remember-me' checked="checked" /></td>
+			</tr>
+			<tr>
 			<c:if test="${param.error!=null}">
 				<td></td><td class="error">Login failed due bad credentials</td>
 			</c:if>
