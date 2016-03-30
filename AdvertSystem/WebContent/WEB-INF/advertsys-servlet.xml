@@ -12,15 +12,32 @@
 		base-package="com.bpjoshi.advertsys.controller">
 	</context:component-scan>
 	<mvc:annotation-driven></mvc:annotation-driven>
-	<bean id="viewResolver"
+	<!--  Removed for tiles -->
+	<!--  <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/Jsps/"></property>
 	<property name="suffix" value=".jsp"></property>
-	</bean>
+	</bean>-->
+	
+	
+	
 	<mvc:resources mapping="/static/**" location="/resources/"></mvc:resources>
 	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 	<property name="basename" value="com.bpjoshi.advertsys.message.messages"></property>
+	</bean>
+	<!--  Tiles View Resolver -->
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	</bean>
+	
+	<bean id="tilesconfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+			<value>/resources/layouts/default.xml</value>
+			</list>
+		</property>
 	</bean>
 </beans>
