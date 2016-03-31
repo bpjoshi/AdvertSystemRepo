@@ -2,22 +2,11 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create New Account</title>
-<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/script/jquery.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/script/password.js"></script>
-</head>
-<body>
-	<br>
-	<center style="font-size: 25px"><fmt:message key="form.user.createAccountMessage" /></center>
-	<br/>
+
+
 	<sf:form id="userdetails" method="post"
 		action="${pageContext.request.contextPath}/doCreateAccount" commandName="user">
-		<table align="center" class="formTable">
+		<table class="formTable">
 			<tr>
 				<td class="label">Username:</td>
 				<td><sf:input path="username" class="control" name="username" type="text" /><br/><div class="error"><sf:errors path="username"></sf:errors></div></td>
@@ -40,5 +29,3 @@
 			</tr>
 		</table>
 	</sf:form>
-</body>
-</html>

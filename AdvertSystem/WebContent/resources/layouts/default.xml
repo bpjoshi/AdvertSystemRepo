@@ -3,10 +3,77 @@
 -//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="home" template="/resources/templates/default.jsp">
-	<put-attribute name="title" value="Advert System Home"></put-attribute>
-	<put-attribute name="header" value="/resources/tiles/header.jsp"></put-attribute>
-	<put-attribute name="content" value="/resources/tiles/content.jsp"></put-attribute>
-	<put-attribute name="footer" value="/resources/tiles/footer.jsp"></put-attribute>
+	<definition name="advertsys.base" template="/resources/templates/default.jsp">
+		<put-attribute name="title" value="Advert System Home"></put-attribute>
+		<put-attribute name="header" value="/resources/tiles/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/content.jsp"></put-attribute>
+		<put-attribute name="footer" value="/resources/tiles/footer.jsp"></put-attribute>
 	</definition>
+	
+	<!-- Home Page -->
+	<definition name="home" extends="advertsys.base">
+		<put-attribute name="title" value="Advert System Home"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/home.jsp"></put-attribute>
+	</definition>
+	
+	<!--  Current Adverts Page -->
+	<definition name="currentAdverts" extends="advertsys.base">
+		<put-attribute name="title" value="Posted Adverts"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/currentAdverts.jsp"></put-attribute>
+	</definition>
+	
+	<!-- login -->
+	<definition name="login" extends="advertsys.base">
+		<put-attribute name="title" value="Login Page"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/login.jsp"></put-attribute>
+	</definition>
+	
+	<!-- create account -->
+	<definition name="createAccount" extends="advertsys.base">
+		<put-attribute name="title" value="Create Account"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/createAccount.jsp"></put-attribute>
+	</definition>
+	
+	<!-- Access Denied -->
+	<definition name="accessDenied" extends="advertsys.base">
+		<put-attribute name="title" value="Access Denied"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/accessDenied.jsp"></put-attribute>
+	</definition>
+	
+	<!-- Create Advert -->
+	<definition name="createAdvert" extends="advertsys.base">
+		<put-attribute name="title" value="Create Advert"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/createAdvert.jsp"></put-attribute>
+	</definition>
+	
+	<!-- Admin -->
+	<definition name="admin" extends="advertsys.base">
+		<put-attribute name="title" value="Create Advert"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/admin.jsp"></put-attribute>
+	</definition>
+	
+	<!-- Created Account -->
+	<definition name="createdAccount" extends="advertsys.base">
+		<put-attribute name="title" value="Account Created"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/createdAccount.jsp"></put-attribute>
+	</definition>
+	
+	<!-- created advert  -->
+	<definition name="createdAdvert" extends="advertsys.base">
+		<put-attribute name="title" value="Advert Created"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/createdAdvert.jsp"></put-attribute>
+	</definition>
+	
+	<!--  Error Page -->
+	<definition name="error" extends="advertsys.base">
+		<put-attribute name="title" value="Error Page"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/error.jsp"></put-attribute>
+	</definition>
+	
+	<!-- Logout Page -->
+	<definition name="logout" extends="advertsys.base">
+		<put-attribute name="title" value="Logout Page"></put-attribute>
+		<put-attribute name="body" value="/resources/tiles/logout.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>

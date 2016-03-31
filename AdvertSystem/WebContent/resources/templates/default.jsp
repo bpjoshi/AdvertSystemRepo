@@ -7,15 +7,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute> </title>
+<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/script/jquery.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/script/password.js"></script>
 </head>
 <body>
-<div>
+<div class="header">
 	<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</div>
-	<div>
+	<div class="content">
 	<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
-	<div>
+	<hr/>
+	<div class="footer">
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
 </body>

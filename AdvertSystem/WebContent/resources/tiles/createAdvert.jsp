@@ -2,20 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create New Advert</title>
-<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-	<br>
-	<center style="font-size: 25px">Create Your Advert</center>
-	<br/>
+
 	<sf:form method="post"
 		action="${pageContext.request.contextPath}/doCreateAdvert" commandName="advert">
-		<table align="center" class="formTable">
+		<table class="formTable">
 			<tr>
 				<td class="label">Name:</td>
 				<td><sf:input path="name" class="control" name="name" type="text" /><br/><sf:errors path="name" cssClass="error"></sf:errors></td>
@@ -35,12 +25,7 @@
 		</table>
 	</sf:form>
 	<br /> <br />
-	<center>
-		<a href="${pageContext.request.contextPath}/logout">Logout</a><br />
+		<!--  <a href="${pageContext.request.contextPath}/logout">Logout</a><br /> -->
 		<sec:authorize access="hasAuthority('ROLE_ADMIN')">
 		<a href="${pageContext.request.contextPath}/admin">Admin Page</a>
 		</sec:authorize>
-		
-	</center>
-</body>
-</html>
