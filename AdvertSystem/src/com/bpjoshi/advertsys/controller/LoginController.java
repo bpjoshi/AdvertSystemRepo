@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import com.bpjoshi.advertsys.service.UserService;
 public class LoginController {
 	
 	private UserService userService;
+	private static Logger logger= Logger.getLogger(LoginController.class);
 	
 	@Autowired
 	public void setUserService(UserService userService) {
@@ -31,6 +33,7 @@ public class LoginController {
 
 	@RequestMapping("/")
 	public String showHome(){
+		logger.info("Showing Home Page...");
 		return "home";
 	}
 	
