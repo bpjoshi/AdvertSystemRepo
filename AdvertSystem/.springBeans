@@ -11,6 +11,7 @@
 		<config>src/com/bpjoshi/advertsys/config/dao-context.xml</config>
 		<config>src/com/bpjoshi/advertsys/config/service-context.xml</config>
 		<config>src/com/bpjoshi/advertsys/config/security-context.xml</config>
+		<config>test/com/bpjoshi/advertsys/test/config/datasource.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
