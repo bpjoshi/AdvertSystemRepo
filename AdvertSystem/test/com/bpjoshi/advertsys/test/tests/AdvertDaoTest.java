@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class AdvertDaoTest {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Autowired
+	@Before
 	public void init(){
 		JdbcTemplate jdbc= new JdbcTemplate(dataSource);
 		jdbc.execute("delete from offers");
@@ -47,7 +48,7 @@ public class AdvertDaoTest {
 	}
 	
 	@Test
-	public void testOffer(){
+	public void testAdvert(){
 		User u= new User("naman", "Naman Rawat", "naman@rawat.com", "password", true, "ROLE_USER");
 		assertTrue("Admin Account Created", userDao.createAccount(u));
 		

@@ -41,8 +41,7 @@ public class UserDaoTests {
 	}
 
 	@Test
-	public void testCreateAccount(){
-		//User user= new User("rohit", "rohit@palariya.com", "password", true, "ROLE_USER");
+	public void testUsers(){
 		User user= new User("rohit", "rohit palariya", "rohit@palariya.com", "password", true, "ROLE_USER");
 		assertTrue("Admin Account Created", userDao.createAccount(user));
 		
