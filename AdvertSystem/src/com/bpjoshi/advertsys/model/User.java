@@ -13,13 +13,15 @@ public class User {
 	@Pattern(regexp = "^\\w{5,}$")
 	private String username;
 	
-	@Email
+	@Email(message="This doesn't seem like a valid email.")
 	private String email;
 	
 	@NotBlank
 	@Pattern(regexp="^\\S+$")
 	@Size(min=6, max=20)
 	private String password;
+	
+	private String name;
 	private boolean enabled=false;
 	private String authority;
 	
@@ -29,9 +31,10 @@ public class User {
 	}
 
 
-	public User(String username, String email, String password, boolean enabled,
+	public User(String username, String name, String email, String password, boolean enabled,
 			String authority) {
 		super();
+		this.name=name;
 		this.username = username;
 		this.email=email;
 		this.password = password;
@@ -77,6 +80,16 @@ public class User {
 	}
 
 
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,6 +98,7 @@ public class User {
 				+ ((authority == null) ? 0 : authority.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + (enabled ? 1231 : 1237);
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -112,12 +126,25 @@ public class User {
 			return false;
 		if (enabled != other.enabled)
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", email=" + email + ", name="
+				+ name + ", enabled=" + enabled + ", authority=" + authority
+				+ "]";
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import com.bpjoshi.advertsys.model.User;
 		"classpath:com/bpjoshi/advertsys/config/security-context.xml"
 		, "classpath:com/bpjoshi/advertsys/test/config/datasource.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
+
 public class UserDaoTests {
 	
 	@Autowired
@@ -30,17 +32,18 @@ public class UserDaoTests {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Autowired
+	@Before
 	public void init(){
 		JdbcTemplate jdbc= new JdbcTemplate(dataSource);
+		jdbc.execute("delete from offers");
 		jdbc.execute("delete from authorities");
 		jdbc.execute("delete from users");
 	}
-	
+
 	@Test
 	public void testCreateAccount(){
-		
-		User user= new User("rohit", "rohit@palariya.com", "password", true, "ROLE_USER");
+		//User user= new User("rohit", "rohit@palariya.com", "password", true, "ROLE_USER");
+		User user= new User("rohit", "rohit palariya", "rohit@palariya.com", "password", true, "ROLE_USER");
 		assertTrue("Admin Account Created", userDao.createAccount(user));
 		
 		List<User> userList= userDao.getAllUsers();

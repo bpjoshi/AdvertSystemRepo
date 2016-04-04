@@ -38,12 +38,13 @@ public class UserDao {
 		MapSqlParameterSource prams= new MapSqlParameterSource();
 		prams.addValue("username", user.getUsername());
 		prams.addValue("email", user.getEmail());
+		prams.addValue("name", user.getName());
 		prams.addValue("password", passwordEncoder.encode(user.getPassword()));
 		prams.addValue("enabled", user.isEnabled());
 		prams.addValue("authority", user.getAuthority());
 		
 		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
-		jdbc.update("insert into users (username, email, password, enabled) values (:username, :email, :password, enabled)", prams);
+		jdbc.update("insert into users (username, email, name, password, enabled) values (:username, :email, :name, :password, enabled)", prams);
 		return jdbc.update("insert into authorities (username, authority) values (:username, :authority)", prams) == 1;
 	}
 

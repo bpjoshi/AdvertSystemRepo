@@ -1,11 +1,10 @@
 package com.bpjoshi.advertsys.test.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
 import javax.sql.DataSource;
+
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,17 +15,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bpjoshi.advertsys.dao.AdvertDao;
+import com.bpjoshi.advertsys.dao.UserDao;
 import com.bpjoshi.advertsys.model.Advert;
+import com.bpjoshi.advertsys.model.User;
+
+
 
 @ActiveProfiles("dev")
 @ContextConfiguration(locations={"classpath:com/bpjoshi/advertsys/config/dao-context.xml",
 		"classpath:com/bpjoshi/advertsys/config/security-context.xml"
 		, "classpath:com/bpjoshi/advertsys/test/config/datasource.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
+
 public class AdvertDaoTest {
-	
+
 	@Autowired
 	private AdvertDao advertDao;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -41,8 +48,10 @@ public class AdvertDaoTest {
 	
 	@Test
 	public void testOffer(){
-		Advert adv= new Advert("Test Ad", "test@junit.com", "I am a Junit Test");
+		User u= new User("naman", "Naman Rawat", "naman@rawat.com", "password", true, "ROLE_USER");
+		assertTrue("Admin Account Created", userDao.createAccount(u));
 		
+		Advert adv= new Advert(u, "JUnit Testing expert");
 		assertTrue("Advert Creation should return true", advertDao.createAdvert(adv));
 		
 		List<Advert> advList= advertDao.getCurrentAdverts();
@@ -57,4 +66,7 @@ public class AdvertDaoTest {
 		advList=advertDao.getCurrentAdverts();
 		assertEquals("There should be no Advert",0, advList.size());
 	}
+	
+	
+	
 }

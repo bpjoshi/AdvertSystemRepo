@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.bpjoshi.advertsys.model.Advert;
+import com.bpjoshi.advertsys.model.User;
 
 /**
  * @author Bhagwati Prasad - write2bpj@gmail.com
@@ -33,15 +34,22 @@ public class AdvertDao {
 	
 	public List<Advert> getCurrentAdverts() {
 
-		return jdbc.query("select * from offers", new RowMapper<Advert>() {
+		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, a.authority, o.offer, o.id from users as u join  authorities a on u.username=a.username join offers o on u.username=o.username", new RowMapper<Advert>() {
 
 			public Advert mapRow(ResultSet rs, int rowNum) throws SQLException {
+				User user= new User();
+				user.setAuthority(rs.getString("authority"));
+				user.setEmail(rs.getString("email"));
+				user.setEnabled(rs.getBoolean("enabled"));
+				user.setName(rs.getString("name"));
+				user.setUsername(rs.getString("username"));
+				
 				Advert advert = new Advert();
 
+				advert.setUser(user);
 				advert.setId(rs.getInt("id"));
-				advert.setName(rs.getString("name"));
 				advert.setAdvert(rs.getString("offer"));
-				advert.setEmail(rs.getString("email"));
+				
 
 				return advert;
 			}
@@ -51,13 +59,12 @@ public class AdvertDao {
 
 	public boolean createAdvert(Advert advert) {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(advert);
-		return jdbc.update("insert into offers (name, offer, email) values (:name, :advert, :email)", params) == 1;
+		return jdbc.update("insert into offers (username, offer) values (:username, :advert)", params) == 1;
 	}
 	
 	public boolean updateAdvert(Advert advert) {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(advert);
-		
-		return jdbc.update("update offers set name=:name, email=:email, offer=:advert where id=:id", params) == 1;
+		return jdbc.update("update offers set offer=:advert where id=:id", params) == 1;
 	}
 	
 	public boolean delete(int id) {
@@ -65,5 +72,19 @@ public class AdvertDao {
 		
 		return jdbc.update("delete from offers where id=:id", params) == 1;
 	}
+	
+	/*public Advert getAdvert(int id){
+		User user= new User();
+		user.setAuthority(rs.getString("authority"));
+		user.setEmail(rs.getString("email"));
+		user.setEnabled(rs.getBoolean("enabled"));
+		user.setName(rs.getString("name"));
+		user.setUsername(rs.getString("username"));
+		Advert advert = new Advert();
+		advert.setUser(user);
+		advert.setId(rs.getInt("id"));
+		advert.setAdvert(rs.getString("offer"));
+		return advert;
+	}*/
 }
  

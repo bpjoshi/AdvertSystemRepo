@@ -10,25 +10,18 @@ import org.hibernate.validator.constraints.Email;
  *  */
 public class Advert {
 	private int id;
-	
-	@Size(min=5, max=60, message="The name must Be between 5 to 60 characters.")
-	private String name;
-	
-	@NotNull
-	//@Pattern(regexp=".*\\@.*\\..*", message="This doesn't seem to be a valid email.")
-	@Email(message="This is not a valid email address.")
-	private String email;
 	@Size(min=10, max=250, message="The advert must be between 10 to 250 characters.")
 	private String advert;
+	
+	private User user;
 	
 	public Advert() {
 		super();
 	}
 
-	public Advert(String name, String email, String advert) {
+	public Advert(User user, String advert) {
 		super();
-		this.name = name;
-		this.email = email;
+		this.user=user;
 		this.advert = advert;
 	}
 
@@ -40,22 +33,6 @@ public class Advert {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getAdvert() {
 		return advert;
 	}
@@ -64,9 +41,53 @@ public class Advert {
 		this.advert = advert;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public String getUsername(){
+		return user.getUsername();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((advert == null) ? 0 : advert.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Advert other = (Advert) obj;
+		if (advert == null) {
+			if (other.advert != null)
+				return false;
+		} else if (!advert.equals(other.advert))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
-		return "Advert [name=" + name + ", email=" + email + "]";
+		return "Advert [id=" + id + ", advert=" + advert + ", user=" + user
+				+ "]";
 	}
 	
 	
