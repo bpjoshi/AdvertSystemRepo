@@ -1,5 +1,7 @@
 package com.bpjoshi.advertsys.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +44,12 @@ public class AdvertController {
 	
 	//Method Responsible to Make Entry of Advert in DB
 	@RequestMapping(value="/doCreateAdvert", method=RequestMethod.POST)
-	public String doCreateAdvert(Model model, @Valid Advert advert, BindingResult result){
+	public String doCreateAdvert(Model model, @Valid Advert advert, BindingResult result, Principal principal){
 		if(result.hasErrors()){
 			return "createAdvert";
 		}
-		
+		String username=principal.getName();
+		advert.getUser().setUsername(username);
 		boolean b=advertService.createAdvert(advert);
 		if(b){
 		return "createdAdvert";

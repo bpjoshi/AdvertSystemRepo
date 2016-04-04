@@ -17,6 +17,7 @@ public class Advert {
 	
 	public Advert() {
 		super();
+		this.user= new User();
 	}
 
 	public Advert(User user, String advert) {
