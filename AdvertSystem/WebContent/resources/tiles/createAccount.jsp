@@ -12,6 +12,10 @@
 				<td><sf:input path="username" class="control" name="username" type="text" /><br/><div class="error"><sf:errors path="username"></sf:errors></div></td>
 			</tr>
 			<tr>
+				<td class="label">Name:</td>
+				<td><sf:input path="name" class="control" name="name" type="text" /><br/><div class="error"><sf:errors path="name"></sf:errors></div></td>
+			</tr>
+			<tr>
 				<td class="label">Email:</td>
 				<td><sf:input path="email" class="control" name="email" type="text" /><br/><div class="error"><sf:errors path="email"></sf:errors></div></td>
 			</tr>

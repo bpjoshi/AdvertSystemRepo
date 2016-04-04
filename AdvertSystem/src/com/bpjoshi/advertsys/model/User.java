@@ -21,6 +21,8 @@ public class User {
 	@Size(min=6, max=20)
 	private String password;
 	
+	@NotBlank
+	@Size(min=5, max=60)
 	private String name;
 	private boolean enabled=false;
 	private String authority;

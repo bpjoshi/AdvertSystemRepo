@@ -5,16 +5,14 @@
 
 <table class="formTable">
 	<tr>
-		<th>ID</th>
 		<th>Name</th>
 		<th>Email</th>
 		<th>Service</th>
 		
 		<c:forEach var="iter" items="${adverts}">
 			<tr>
-				<td>${iter.id}</td>
-				<td>${iter.name}</td>
-				<td>${iter.email}</td>
+				<td>${iter.user.name}</td>
+				<td>${iter.user.email}</td>
 				<td>${iter.advert}</td>
 			</tr>
 		</c:forEach>

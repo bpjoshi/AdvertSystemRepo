@@ -7,15 +7,7 @@
 		action="${pageContext.request.contextPath}/doCreateAdvert" commandName="advert">
 		<table class="formTable">
 			<tr>
-				<td class="label">Name:</td>
-				<td><sf:input path="name" class="control" name="name" type="text" /><br/><sf:errors path="name" cssClass="error"></sf:errors></td>
-			</tr>
-			<tr>
-				<td class="label">Email:</td>
-				<td><sf:input path="email" class="control" name="email" type="text" /><br/><sf:errors path="email" cssClass="error"></sf:errors></td>
-			</tr>
-			<tr>
-				<td class="label">Service:</td>
+				<td class="label">Your Service:</td>
 				<td><sf:textarea path="advert" class="control" name="advert" rows="3" cols="16"></sf:textarea><br/><sf:errors path="advert" cssClass="error"></sf:errors></td>
 			</tr>
 			<tr>
