@@ -34,29 +34,15 @@ public class AdvertDao {
 	
 	public List<Advert> getCurrentAdverts() {
 
-		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, a.authority, o.offer, o.id from users as u join  authorities a on u.username=a.username join offers o on u.username=o.username", new RowMapper<Advert>() {
-
-			public Advert mapRow(ResultSet rs, int rowNum) throws SQLException {
-				User user= new User();
-				user.setAuthority(rs.getString("authority"));
-				user.setEmail(rs.getString("email"));
-				user.setEnabled(rs.getBoolean("enabled"));
-				user.setName(rs.getString("name"));
-				user.setUsername(rs.getString("username"));
-				
-				Advert advert = new Advert();
-
-				advert.setUser(user);
-				advert.setId(rs.getInt("id"));
-				advert.setAdvert(rs.getString("offer"));
-				
-
-				return advert;
-			}
-
-		});
+		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, a.authority, o.offer, o.id from users as u join  authorities a on u.username=a.username join offers o on u.username=o.username", new AdvertRowMapper());
 	}
+	
+	public List<Advert> getAdvertsByUsername(String username) {
 
+		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, a.authority, o.offer, o.id from users as u join  authorities a on u.username=a.username join offers o on u.username=o.username and o.username=:username", 
+				new MapSqlParameterSource("username", username), new AdvertRowMapper());
+	}
+	
 	public boolean createAdvert(Advert advert) {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(advert);
 		return jdbc.update("insert into offers (username, offer) values (:username, :advert)", params) == 1;
