@@ -5,6 +5,7 @@
 
 	<sf:form method="post"
 		action="${pageContext.request.contextPath}/doCreateAdvert" commandName="advert">
+		<sf:input type="hidden" name="id" path="id" />
 		<table class="formTable">
 			<tr>
 				<td class="label">Your Service:</td>
@@ -12,7 +13,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td align="center"><input class="control" name="submit" type="submit" value="Create Advert" /></td>
+				<td align="center"><input class="control" name="submit" type="submit" value="Save Advert" /></td>
 			</tr>
 		</table>
 	</sf:form>

@@ -37,8 +37,18 @@ public class AdvertController {
 	
 	//Method to show create Advert page
 	@RequestMapping("/createAdvert")
-	public String createAdvert(Model model){
+	public String createAdvert(Model model, Principal principal){
+		Advert advert=null;
+		if(principal!=null){
+			String username=principal.getName();
+			advert= advertService.getAdvert(username);
+		}
+		if(advert==null){
 		model.addAttribute("advert", new Advert());
+		}
+		else{
+			model.addAttribute("advert", advert);
+		}
 		return "createAdvert";
 	}
 	
@@ -50,10 +60,7 @@ public class AdvertController {
 		}
 		String username=principal.getName();
 		advert.getUser().setUsername(username);
-		boolean b=advertService.createAdvert(advert);
-		if(b){
+		advertService.saveOrUpdate(advert);
 		return "createdAdvert";
-		}
-		return "error";
 	}
 }

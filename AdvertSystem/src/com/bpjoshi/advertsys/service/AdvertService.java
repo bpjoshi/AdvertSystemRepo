@@ -41,4 +41,21 @@ public class AdvertService {
 			}
 		return true;
 	}
+	
+	public void saveOrUpdate(Advert advert) {
+		if(advert.getId()!=0){
+			advertDao.updateAdvert(advert);
+		}
+		else{
+			advertDao.createAdvert(advert);
+		}
+		
+	}
+
+	public Advert getAdvert(String username) {
+		if(username==null) return null;
+		List<Advert> advertList= advertDao.getAdvertsByUsername(username);
+		if(advertList.size()==0) return null;
+		return advertList.get(0);
+	}
 }
