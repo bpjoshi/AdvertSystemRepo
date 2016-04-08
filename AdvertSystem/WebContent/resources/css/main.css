@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 .formTable {
-	width:380px;
+	width:auto;
 	padding: 10px;
 	border: 1px solid grey;
 }
