@@ -1,5 +1,6 @@
 package com.bpjoshi.advertsys.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,7 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bpjoshi.advertsys.model.Advert;
 import com.bpjoshi.advertsys.model.User;
+import com.bpjoshi.advertsys.service.AdvertService;
 import com.bpjoshi.advertsys.service.UserService;
 
 /**
@@ -24,6 +27,10 @@ import com.bpjoshi.advertsys.service.UserService;
 public class LoginController {
 	
 	private UserService userService;
+	
+	@Autowired
+	private AdvertService advertService;
+	
 	private static Logger logger= Logger.getLogger(LoginController.class);
 	
 	@Autowired
@@ -32,8 +39,14 @@ public class LoginController {
 	}
 
 	@RequestMapping("/")
-	public String showHome(){
-		logger.info("Showing Home Page...");
+	public String showHome(Model model, Principal principal){
+		List<Advert> advertList= advertService.getCurrentAdverts();
+		model.addAttribute("advertList", advertList);
+		boolean hasAdverts=false;
+		if(principal!=null){
+			hasAdverts=advertService.hasAdverts(principal.getName());
+		}
+		model.addAttribute("hasAdverts", hasAdverts);
 		return "home";
 	}
 	

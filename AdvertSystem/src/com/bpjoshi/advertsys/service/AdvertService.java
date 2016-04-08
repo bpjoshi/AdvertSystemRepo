@@ -32,4 +32,13 @@ public class AdvertService {
 	public boolean createAdvert(Advert advert) {
 		return advertDao.createAdvert(advert);
 	}
+	
+	public boolean hasAdverts(String name) {
+		if(name==null) return false;
+		List<Advert> advertList= advertDao.getAdvertsByUsername(name);
+			if(advertList.size()==0){
+				return false;
+			}
+		return true;
+	}
 }
