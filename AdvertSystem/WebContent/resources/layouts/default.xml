@@ -76,4 +76,9 @@
 		<put-attribute name="body" value="/resources/tiles/logout.jsp"></put-attribute>
 	</definition>
 	
+	<!-- Advert Deleted -->
+	<definition name="advertDeleted" extends="advertsys.base">
+		<put-attribute name="title" value="Advert Deleted"></put-attribute>
+		<put-attribute name="content" value="/resources/tiles/advertDeleted.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

@@ -1,0 +1,1 @@
+Advert has been deleted

@@ -58,4 +58,9 @@ public class AdvertService {
 		if(advertList.size()==0) return null;
 		return advertList.get(0);
 	}
+
+	public void delete(int id) {
+		advertDao.delete(id);
+		
+	}
 }

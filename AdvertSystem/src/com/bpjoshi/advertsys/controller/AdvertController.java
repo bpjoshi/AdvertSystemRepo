@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bpjoshi.advertsys.model.Advert;
 import com.bpjoshi.advertsys.service.AdvertService;
@@ -54,13 +55,21 @@ public class AdvertController {
 	
 	//Method Responsible to Make Entry of Advert in DB
 	@RequestMapping(value="/doCreateAdvert", method=RequestMethod.POST)
-	public String doCreateAdvert(Model model, @Valid Advert advert, BindingResult result, Principal principal){
+	public String doCreateAdvert(Model model, @Valid Advert advert, BindingResult result, Principal principal,
+			@RequestParam(value="delete", required=false) String delete){
 		if(result.hasErrors()){
 			return "createAdvert";
 		}
-		String username=principal.getName();
-		advert.getUser().setUsername(username);
-		advertService.saveOrUpdate(advert);
+		if(delete==null){
+			String username=principal.getName();
+			advert.getUser().setUsername(username);
+			advertService.saveOrUpdate(advert);
+		}
+		else{
+			advertService.delete(advert.getId());
+			return "advertDeleted";
+		}
+		
 		return "createdAdvert";
 	}
 }
