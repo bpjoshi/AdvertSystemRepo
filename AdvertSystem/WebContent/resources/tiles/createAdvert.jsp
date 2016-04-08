@@ -23,7 +23,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td align="center"><input class="control" name="delete" type="submit" value="Delete Advert" /></td>
+				<td align="center"><input class="delete" name="delete" type="submit" value="Delete Advert" /></td>
 			</tr>
 			</c:if>
 		</table>

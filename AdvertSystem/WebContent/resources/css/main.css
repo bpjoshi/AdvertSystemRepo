@@ -13,6 +13,10 @@ input[type=password]{
 	width:240px;
 }
 
+input.delete{
+	border: 1px solid red;
+}
+
 textarea {
 	width:240px;
 	height:100px;
