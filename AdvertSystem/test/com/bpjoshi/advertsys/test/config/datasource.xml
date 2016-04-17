@@ -28,6 +28,9 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="javax.persistence.validation.group.pre-persist">com.bpjoshi.advertsys.model.PersistanceValidationGroup</prop>
+				<prop key="javax.persistence.validation.group.pre-update">com.bpjoshi.advertsys.model.PersistanceValidationGroup</prop>
+				<prop key="javax.persistence.validation.group.pre-remove">com.bpjoshi.advertsys.model.PersistanceValidationGroup</prop>
 			</props>
 		</property>
 		

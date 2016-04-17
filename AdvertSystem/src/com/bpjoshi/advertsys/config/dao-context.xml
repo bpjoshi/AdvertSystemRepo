@@ -21,5 +21,24 @@
 	<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<tx:annotation-driven />
+	
+	<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="javax.persistence.validation.group.pre-persist">com.bpjoshi.advertsys.model.PersistanceValidationGroup</prop>
+				<prop key="javax.persistence.validation.group.pre-update">com.bpjoshi.advertsys.model.PersistanceValidationGroup</prop>
+				<prop key="javax.persistence.validation.group.pre-remove">com.bpjoshi.advertsys.model.PersistanceValidationGroup</prop>
+			</props>
+		</property>
+		
+		<property name="packagesToScan">
+		<list>
+			<value>com.bpjoshi.advertsys.model</value>	
+		</list>
+		</property>
+		</bean>
 	</beans>
 </beans>

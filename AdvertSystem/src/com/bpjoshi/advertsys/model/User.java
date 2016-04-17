@@ -14,9 +14,9 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name="users")
 public class User {
 	
-	@NotBlank
-	@Size(min=5, max=59)
-	@Pattern(regexp = "^\\w{5,}$")
+	@NotBlank(groups={PersistanceValidationGroup.class, FormValidationGroup.class})
+	@Size(min=5, max=59, groups={PersistanceValidationGroup.class, FormValidationGroup.class})
+	@Pattern(regexp = "^\\w{5,}$", groups={PersistanceValidationGroup.class, FormValidationGroup.class})
 	@Id
 	@Column(name="username")
 	private String username;
@@ -24,13 +24,15 @@ public class User {
 	@Email(message="This doesn't seem like a valid email.")
 	private String email;
 	
-	@NotBlank
-	@Pattern(regexp="^\\S+$")
-	@Size(min=6, max=20)
+	@NotBlank(groups={PersistanceValidationGroup.class, FormValidationGroup.class})
+	@Pattern(regexp="^\\S+$", groups={PersistanceValidationGroup.class, FormValidationGroup.class})
+	@Size(min=6, max=20, groups={FormValidationGroup.class})
+	@Column(name="password")
 	private String password;
 	
-	@NotBlank
-	@Size(min=5, max=60)
+	@NotBlank(groups={PersistanceValidationGroup.class, FormValidationGroup.class})
+	@Size(min=5, max=60, groups={PersistanceValidationGroup.class, FormValidationGroup.class})
+	@Column(name="name")
 	private String name;
 	private boolean enabled=false;
 	private String authority;
