@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bpjoshi.advertsys.model.User;
@@ -19,7 +20,7 @@ import com.bpjoshi.advertsys.model.User;
  * @author Bhagwati Prasad - write2bpj@gmail.com
  * 
  *  */
-
+@Repository
 @Transactional
 @Component("userDao")
 public class UserDao {
