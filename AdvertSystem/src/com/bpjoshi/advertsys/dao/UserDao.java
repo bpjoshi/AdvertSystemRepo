@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -45,26 +47,15 @@ public class UserDao {
 
 	@Transactional
 	public void createAccount(User user) {
-		
-		/*MapSqlParameterSource prams= new MapSqlParameterSource();
-		prams.addValue("username", user.getUsername());
-		prams.addValue("email", user.getEmail());
-		prams.addValue("name", user.getName());
-		prams.addValue("password", passwordEncoder.encode(user.getPassword()));
-		prams.addValue("enabled", user.isEnabled());
-		prams.addValue("authority", user.getAuthority());	
-		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
-		return jdbc.update("insert into users (username, email, name, password, enabled, authority) values (:username, :email, :name, :password, :enabled, :authority)", prams)==1;
-		 //jdbc.update("insert into authorities (username, authority) values (:username, :authority)", prams) == 1;
-		*/
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		session().save(user);
 	}
 
 	public boolean exists(String username) {
-		System.out.println("duplicate username");
-		return jdbc.queryForObject("select count(*) from users where username=:username", 
-				new MapSqlParameterSource("username", username), Integer.class)>0; 
+		Criteria cr= session().createCriteria(User.class);
+		cr.add(Restrictions.idEq(username));
+		User user=(User) cr.uniqueResult();
+		return user!=null;
 	}
 	
 	@SuppressWarnings("unchecked")

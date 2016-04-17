@@ -55,17 +55,13 @@ public class UserDaoTests {
 		assertEquals("Should be 2 insert users", 2, userList.size());
 	}
 	
-	// TODO - re-implement this
+	
 	@Test
-	public void testUsers(){
-		User user= new User("rohit", "rohit palariya", "rohit@palariya.com", "password", true, "ROLE_USER");
-		userDao.createAccount(user);
+	public void exists(){
+		userDao.createAccount(user1);
+		userDao.createAccount(user2);
 		
-		List<User> userList= userDao.getAllUsers();
-		assertEquals("Number of User should be 1",1, userList.size());
-		
-		assertTrue("This user should exist", userDao.exists(user.getUsername()));
-		
-		assertEquals("The users must be euqal", user, userList.get(0));
+		assertTrue("This user should exist", userDao.exists(user2.getUsername()));
+		assertFalse("This user should not exist", userDao.exists("abcdefg"));
 	}
 }
