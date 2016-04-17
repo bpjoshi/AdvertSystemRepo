@@ -34,12 +34,12 @@ public class AdvertDao {
 	
 	public List<Advert> getCurrentAdverts() {
 
-		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, a.authority, o.offer, o.id from users as u join  authorities a on u.username=a.username join offers o on u.username=o.username", new AdvertRowMapper());
+		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, u.authority, o.offer, o.id from users as u join offers o on u.username=o.username", new AdvertRowMapper());
 	}
 	
 	public List<Advert> getAdvertsByUsername(String username) {
 
-		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, a.authority, o.offer, o.id from users as u join  authorities a on u.username=a.username join offers o on u.username=o.username and o.username=:username", 
+		return jdbc.query("select u.username, u.password, u.enabled, u.email, u.name, u.authority, o.offer, o.id from users as u join offers o on u.username=o.username and o.username=:username", 
 				new MapSqlParameterSource("username", username), new AdvertRowMapper());
 	}
 	

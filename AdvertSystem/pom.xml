@@ -204,5 +204,16 @@
         	<artifactId>commons-dbcp</artifactId>
         	<version>1.4</version>
         </dependency>
+        <!-- Spring ORM and Hibernate -->
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-orm</artifactId>
+        	<version>4.2.4.RELEASE</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-core</artifactId>
+        	<version>4.3.11.Final</version>
+        </dependency>
   </dependencies>
 </project>

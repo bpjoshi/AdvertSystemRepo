@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -18,6 +20,7 @@ import com.bpjoshi.advertsys.model.User;
  * 
  *  */
 
+@Transactional
 @Component("userDao")
 public class UserDao {
 	
@@ -31,6 +34,13 @@ public class UserDao {
 	public void setDataSource(DataSource jdbc) {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
 	}
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public Session session(){
+		return sessionFactory.getCurrentSession();
+	}
 
 	@Transactional
 	public boolean createAccount(User user) {
@@ -41,11 +51,10 @@ public class UserDao {
 		prams.addValue("name", user.getName());
 		prams.addValue("password", passwordEncoder.encode(user.getPassword()));
 		prams.addValue("enabled", user.isEnabled());
-		prams.addValue("authority", user.getAuthority());
-		
+		prams.addValue("authority", user.getAuthority());	
 		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
-		jdbc.update("insert into users (username, email, name, password, enabled) values (:username, :email, :name, :password, enabled)", prams);
-		return jdbc.update("insert into authorities (username, authority) values (:username, :authority)", prams) == 1;
+		return jdbc.update("insert into users (username, email, name, password, enabled, authority) values (:username, :email, :name, :password, :enabled, :authority)", prams)==1;
+		 //jdbc.update("insert into authorities (username, authority) values (:username, :authority)", prams) == 1;
 	}
 
 	public boolean exists(String username) {
@@ -53,9 +62,11 @@ public class UserDao {
 		return jdbc.queryForObject("select count(*) from users where username=:username", 
 				new MapSqlParameterSource("username", username), Integer.class)>0; 
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
-		return jdbc.query("select * from users, authorities where users.username=authorities.username", BeanPropertyRowMapper.newInstance(User.class));
+		List<User> result= (List<User>) session().createQuery("from User").list();
+		 return result;
 	}
 }
  

@@ -1,16 +1,24 @@
 package com.bpjoshi.advertsys.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+@Entity
+@Table(name="users")
 public class User {
 	
 	@NotBlank
 	@Size(min=5, max=59)
 	@Pattern(regexp = "^\\w{5,}$")
+	@Id
+	@Column(name="username")
 	private String username;
 	
 	@Email(message="This doesn't seem like a valid email.")
