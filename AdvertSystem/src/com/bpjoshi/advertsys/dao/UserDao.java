@@ -43,9 +43,9 @@ public class UserDao {
 	}
 
 	@Transactional
-	public boolean createAccount(User user) {
+	public void createAccount(User user) {
 		
-		MapSqlParameterSource prams= new MapSqlParameterSource();
+		/*MapSqlParameterSource prams= new MapSqlParameterSource();
 		prams.addValue("username", user.getUsername());
 		prams.addValue("email", user.getEmail());
 		prams.addValue("name", user.getName());
@@ -55,6 +55,8 @@ public class UserDao {
 		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		return jdbc.update("insert into users (username, email, name, password, enabled, authority) values (:username, :email, :name, :password, :enabled, :authority)", prams)==1;
 		 //jdbc.update("insert into authorities (username, authority) values (:username, :authority)", prams) == 1;
+		*/
+		session().save(user);
 	}
 
 	public boolean exists(String username) {

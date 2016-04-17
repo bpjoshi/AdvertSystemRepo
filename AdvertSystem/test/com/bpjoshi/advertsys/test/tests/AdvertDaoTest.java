@@ -49,10 +49,10 @@ public class AdvertDaoTest {
 	@Test
 	public void testAdvert(){
 		User u= new User("naman", "Naman Rawat", "naman@rawat.com", "password", true, "ROLE_USER");
-		assertTrue("Admin Account Created", userDao.createAccount(u));
+		userDao.createAccount(u);
 		
 		User u1= new User("rohit", "rohit palariya", "rohit@palariya.com", "password", true, "ROLE_USER");
-		assertTrue("Admin Account Created", userDao.createAccount(u1));
+		userDao.createAccount(u1);
 		
 		Advert adv0= new Advert(u1, "Spring");
 		assertTrue("Advert Creation should return true", advertDao.createAdvert(adv0));

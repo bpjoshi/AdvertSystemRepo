@@ -24,8 +24,8 @@ public class UserService {
 		this.userDao = userDao;
 	}
 	
-	public boolean createAccount(User user) {
-		return userDao.createAccount(user);
+	public void createAccount(User user) {
+		 userDao.createAccount(user);
 	}
 
 

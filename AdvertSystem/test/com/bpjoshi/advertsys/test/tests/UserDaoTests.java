@@ -32,17 +32,34 @@ public class UserDaoTests {
 	@Autowired
 	private DataSource dataSource;
 	
+	private User user1= new User("rohit1", "rohit palariya", "rohit@palariya.com", "password", true, "ROLE_USER");
+	private User user2= new User("rohit2", "rohit palariya", "rohit@palariya.com", "password", true, "ROLE_USER");
+	
+	
 	@Before
 	public void init(){
 		JdbcTemplate jdbc= new JdbcTemplate(dataSource);
 		jdbc.execute("delete from offers");
 		jdbc.execute("delete from users");
 	}
-
+	
+	@Test
+	public void testCreateRetrieve(){
+		userDao.createAccount(user1);
+		List<User> userList= userDao.getAllUsers();
+		assertEquals("Only user should have been created", 1, userList.size());
+		assertEquals("Insert and retrieved users should match", user1, userList.get(0));
+		
+		userDao.createAccount(user2);
+		userList= userDao.getAllUsers();
+		assertEquals("Should be 2 insert users", 2, userList.size());
+	}
+	
+	// TODO - re-implement this
 	@Test
 	public void testUsers(){
 		User user= new User("rohit", "rohit palariya", "rohit@palariya.com", "password", true, "ROLE_USER");
-		assertTrue("Admin Account Created", userDao.createAccount(user));
+		userDao.createAccount(user);
 		
 		List<User> userList= userDao.getAllUsers();
 		assertEquals("Number of User should be 1",1, userList.size());
