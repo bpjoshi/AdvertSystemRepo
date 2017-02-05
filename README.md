@@ -4,6 +4,6 @@ Introduction: It is a web based freelancing advertisement system where people ca
 
 Technology Used: This web application is made using Spring 4 (Core, AOP, Security, JDBC, Webflow), Hibernate, Apache Tiles, JSP, Javascript, Ajax, JQuery, JSON. Loggin and Unit Testings are enabled. For backend, MySQL has been used as a relational database and Apache Tomcat 7 as a server.
 
-Other Details: The porject is not fully complete yet. It's in progress and will be completed by the end of March 2016.
+Other Details: The porject is not here on github is not fully complete. Contact me if you need the fully developed project code.
 
 
